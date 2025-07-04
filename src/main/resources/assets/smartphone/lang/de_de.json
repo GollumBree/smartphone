@@ -1,0 +1,8 @@
+{
+  "item.smartphone.item": "Schmartfon",
+  "screen.smartphone.title": "Schmartfon",
+  "smartphone.configuration.title": "Smartphone Konfigurationen",
+  "smartphone.configuration.section.smartphone.common.toml": "Smartphone Konfigurationen",
+  "smartphone.configuration.section.smartphone.common.toml.title": "Smartphone Konfigurationen",
+  "smartphone.configuration.supported_items": "Liste von zusätzlich erlaubten items"
+}

@@ -1,0 +1,8 @@
+{
+  "item.smartphone.example_item": "Smartphone",
+  "screen.smartphone.title": "Smartphone",
+  "smartphone.configuration.title": "Smartphone Configs",
+  "smartphone.configuration.section.smartphone.common.toml": "Smartphone Configs",
+  "smartphone.configuration.section.smartphone.common.toml.title": "Smartphone Configs",
+  "smartphone.configuration.supported_items": "List of additional allowed items"
+}

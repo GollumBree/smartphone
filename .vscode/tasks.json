@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "gradle",
+			"id": "/home/daniel/MinecraftMods/smartphonerunClientsmartphone",
+			"script": "runClient",
+			"description": "Runs the client Minecraft run configuration.",
+			"group": "mod development",
+			"project": "smartphone",
+			"buildFile": "/home/daniel/MinecraftMods/smartphone/build.gradle",
+			"rootProject": "smartphone",
+			"projectFolder": "/home/daniel/MinecraftMods/smartphone",
+			"workspaceFolder": "/home/daniel/MinecraftMods/smartphone",
+			"args": "",
+			"javaDebug": false,
+			"problemMatcher": [
+				"$gradle"
+			],
+			"label": "gradle: runClient"
+		}
+	]
+}

@@ -1,0 +1,93 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Client",
+      "presentation": {
+        "group": "Mod Development - smartphone",
+        "order": 0
+      },
+      "projectName": "smartphone",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/home/daniel/MinecraftMods/smartphone/build/moddev/clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/home/daniel/MinecraftMods/smartphone/build/moddev/clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dsmartphone%%/home/daniel/MinecraftMods/smartphone/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Data",
+      "presentation": {
+        "group": "Mod Development - smartphone",
+        "order": 1
+      },
+      "projectName": "smartphone",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/home/daniel/MinecraftMods/smartphone/build/moddev/dataRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/home/daniel/MinecraftMods/smartphone/build/moddev/dataRunVmArgs.txt",
+        "-Dfml.modFolders\u003dsmartphone%%/home/daniel/MinecraftMods/smartphone/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "GameTestServer",
+      "presentation": {
+        "group": "Mod Development - smartphone",
+        "order": 2
+      },
+      "projectName": "smartphone",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/home/daniel/MinecraftMods/smartphone/build/moddev/gameTestServerRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/home/daniel/MinecraftMods/smartphone/build/moddev/gameTestServerRunVmArgs.txt",
+        "-Dfml.modFolders\u003dsmartphone%%/home/daniel/MinecraftMods/smartphone/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Server",
+      "presentation": {
+        "group": "Mod Development - smartphone",
+        "order": 3
+      },
+      "projectName": "smartphone",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@/home/daniel/MinecraftMods/smartphone/build/moddev/serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@/home/daniel/MinecraftMods/smartphone/build/moddev/serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dsmartphone%%/home/daniel/MinecraftMods/smartphone/bin/main"
+      ],
+      "cwd": "${workspaceFolder}/run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    }
+  ]
+}

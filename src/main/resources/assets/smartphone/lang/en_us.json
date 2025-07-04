@@ -1,5 +1,5 @@
 {
-  "item.smartphone.example_item": "Smartphone",
+  "item.smartphone.smartphone": "Smartphone",
   "screen.smartphone.title": "Smartphone",
   "smartphone.configuration.title": "Smartphone Configs",
   "smartphone.configuration.section.smartphone.common.toml": "Smartphone Configs",

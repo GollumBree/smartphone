@@ -11,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 public class SmartphoneScreen extends AbstractContainerScreen<SmartphoneMenu> {
 
     private static final ResourceLocation BG = ResourceLocation.fromNamespaceAndPath(Smartphone.MODID,
-            "textures/gui/container/my_screen.png");
+            "textures/gui/container/smartphone_screen.png");
 
     public SmartphoneScreen(SmartphoneMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);

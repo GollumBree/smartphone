@@ -1,5 +1,5 @@
 {
-  "item.smartphone.item": "Schmartfon",
+  "item.smartphone.smartphone": "Schmartfon",
   "screen.smartphone.title": "Schmartfon",
   "smartphone.configuration.title": "Smartphone Konfigurationen",
   "smartphone.configuration.section.smartphone.common.toml": "Smartphone Konfigurationen",

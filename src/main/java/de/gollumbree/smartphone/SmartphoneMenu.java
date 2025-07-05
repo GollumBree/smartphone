@@ -7,10 +7,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 // import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
@@ -53,8 +55,15 @@ public class SmartphoneMenu extends AbstractContainerMenu {
                 this.addSlot(new Slot(phoneInv, col + row * cols, GUI_LEFT + col * PIXEL_X, GUI_TOP + row * PIXEL_Y) {
                     // @Override
                     // public boolean mayPickup(@Nonnull Player player) {
-                    // return super.mayPickup(player); // allow pickup
+                    // ItemStack held = player.getMainHandItem();
+                    // ItemStack item = super.getItem();
+                    // player.setItemInHand(InteractionHand.MAIN_HAND, item); // set the item in
+                    // hand
+                    // item.use(player.level(), player, InteractionHand.MAIN_HAND); // use the item
+                    // player.setItemInHand(InteractionHand.MAIN_HAND, held); // restore held item
+                    // return false; // forbid pickup
                     // }
+
                     @Override
                     public boolean mayPlace(@Nonnull ItemStack stack) {
                         if (!(stack.is(TagKey.create(BuiltInRegistries.ITEM.key(),
@@ -68,6 +77,11 @@ public class SmartphoneMenu extends AbstractContainerMenu {
                         }
                         return super.mayPlace(phoneStack);
                     }; // only allow specific items
+
+                    @Override
+                    public int getMaxStackSize() {
+                        return 1; // only allow one item per slot
+                    }
                 });
             }
         }
@@ -173,4 +187,17 @@ public class SmartphoneMenu extends AbstractContainerMenu {
     // ? super.moveItemStackTo(stack, startIndex, endIndex, reverseDirection)
     // : false;
     // }
+    @Override
+    public void clicked(int slotId, int button, @Nonnull ClickType clickType, @Nonnull Player player) {
+        if (button == 1 && slotId < phoneInv.getContainerSize()) {
+            ItemStack held = player.getMainHandItem();
+            ItemStack item = phoneInv.getItem(slotId); // get the item from the slot
+            player.setItemInHand(InteractionHand.MAIN_HAND, item); // set the item in hand
+            item.use(player.level(), player, InteractionHand.MAIN_HAND); // use the item
+            player.setItemInHand(InteractionHand.MAIN_HAND, held); // restore held item
+            return;
+        }
+
+        super.clicked(slotId, button, clickType, player);
+    }
 }

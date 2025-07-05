@@ -58,15 +58,16 @@ public class SmartphoneMenu extends AbstractContainerMenu {
                     // }
                     @Override
                     public boolean mayPlace(@Nonnull ItemStack stack) {
-                        if (!stack.is(TagKey.create(BuiltInRegistries.ITEM.key(),
-                                ResourceLocation.fromNamespaceAndPath("smartphone", "usable")))) {
+                        if (!(stack.is(TagKey.create(BuiltInRegistries.ITEM.key(),
+                                ResourceLocation.fromNamespaceAndPath("smartphone", "usable")))
+                                ||
+                                Config.isAllowed(stack.getItem()))) {
                             return false; // only allow specific items
                         }
                         if (stack.getItem() instanceof SmartphoneItem) {
                             return false; // no smartphone inside smartphone
                         }
                         return super.mayPlace(phoneStack);
-
                     }; // only allow specific items
                 });
             }

@@ -190,11 +190,12 @@ public class SmartphoneMenu extends AbstractContainerMenu {
     @Override
     public void clicked(int slotId, int button, @Nonnull ClickType clickType, @Nonnull Player player) {
         if (button == 1 && slotId < phoneInv.getContainerSize()) {
-            ItemStack held = player.getMainHandItem();
+            ItemStack phone = player.getMainHandItem();
             ItemStack item = phoneInv.getItem(slotId); // get the item from the slot
             player.setItemInHand(InteractionHand.MAIN_HAND, item); // set the item in hand
             item.use(player.level(), player, InteractionHand.MAIN_HAND); // use the item
-            player.setItemInHand(InteractionHand.MAIN_HAND, held); // restore held item
+            player.setItemInHand(InteractionHand.MAIN_HAND, phone); // restore held item
+            SmartphoneItem.setLastUsed(phone, item); // set the last used item
             return;
         }
 

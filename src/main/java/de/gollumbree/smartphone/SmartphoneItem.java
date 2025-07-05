@@ -2,6 +2,7 @@ package de.gollumbree.smartphone;
 
 import javax.annotation.Nonnull;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -16,9 +17,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 
-
 public class SmartphoneItem extends Item {
     public static final String INVENTORY_KEY = "PhoneInventory";
+    private static final String LAST_USED_KEY = "LastUsed";
 
     public SmartphoneItem(Properties props) {
         super(props); // Register the data component
@@ -51,6 +52,28 @@ public class SmartphoneItem extends Item {
         CompoundTag tag = new CompoundTag();
         tag.put(INVENTORY_KEY, inventory);
         stack.set(DataComponents.CUSTOM_DATA, CustomData.of(tag)); // ✅ CORRECT
+    }
+
+    public static ItemStack getLastUsed(ItemStack phone, HolderLookup.Provider lookup) {
+        CustomData cd = phone.get(DataComponents.CUSTOM_DATA);
+        if (cd == null)
+            return ItemStack.EMPTY;
+
+        CompoundTag root = cd.copyTag();
+        if (!root.contains(LAST_USED_KEY, CompoundTag.TAG_COMPOUND))
+            return ItemStack.EMPTY;
+
+        return ItemStack.parse(lookup, root.getCompound(LAST_USED_KEY)).orElse(ItemStack.EMPTY);
+    }
+
+    public static void setLastUsed(ItemStack phone, ItemStack lastUsed, HolderLookup.Provider lookup) {
+        @SuppressWarnings("null")
+        CompoundTag tag = phone.get(DataComponents.CUSTOM_DATA) != null
+                ? phone.get(DataComponents.CUSTOM_DATA).copyTag()
+                : new CompoundTag();
+
+        tag.put(LAST_USED_KEY, lastUsed.save(lookup));
+        phone.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
     }
 
 }

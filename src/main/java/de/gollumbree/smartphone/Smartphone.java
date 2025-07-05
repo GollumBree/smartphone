@@ -10,6 +10,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -35,7 +36,7 @@ public class Smartphone {
     // pass them in automatically.
     public Smartphone(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
-        //modEventBus.addListener(this::commonSetup);
+        // modEventBus.addListener(this::commonSetup);
 
         // Register the Deferred Register to the mod event bus so items get registered
         ITEMS.register(modEventBus);
@@ -53,6 +54,7 @@ public class Smartphone {
         // Register our mod's ModConfigSpec so that FML can create and load the config
         // file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        NeoForge.EVENT_BUS.register(Config.class);
 
         ModMenus.MENUS.register(modEventBus);
 
@@ -72,6 +74,6 @@ public class Smartphone {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     // @SubscribeEvent
     // public void onServerStarting(ServerStartingEvent event) {
-    //     // Do something when the server starts
+    // // Do something when the server starts
     // }
 }

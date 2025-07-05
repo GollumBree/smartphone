@@ -4,5 +4,7 @@
   "smartphone.configuration.title": "Smartphone Configs",
   "smartphone.configuration.section.smartphone.common.toml": "Smartphone Configs",
   "smartphone.configuration.section.smartphone.common.toml.title": "Smartphone Configs",
-  "smartphone.configuration.supported_items": "List of additional allowed items"
+  "smartphone.configuration.allowedItems": "List of additional allowed items",
+  "smartphone.configuration.allowedItems.tooltip": "Add item IDs or tags (#namespace:path) to allow them in the smartphone.",
+  "smartphone.configuration.allowedItems.button": "Add Item/Tag"
 }

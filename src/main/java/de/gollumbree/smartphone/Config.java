@@ -1,8 +1,11 @@
 package de.gollumbree.smartphone;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -19,6 +22,7 @@ import net.neoforged.neoforge.event.server.ServerStartedEvent;
 // one to keep your config organized.
 // Demonstrates how to use Neo's config APIs
 public class Config {
+        private static final org.slf4j.Logger LOGGER = Smartphone.LOGGER;
         private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
         /** A list of item IDs or tag IDs (#namespace:path) allowed in the phone */
@@ -63,11 +67,12 @@ public class Config {
                                 // Single item entry
                                 ResourceLocation id = ResourceLocation.tryParse(entry);
                                 if (id == null) {
-                                        Smartphone.LOGGER.warn("Invalid item ID in config: {}", entry);
                                         continue;
                                 }
 
-                                itemLookup.get(ResourceKey.create(Registries.ITEM, id));
+                                ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, id);
+                                Optional<Holder.Reference<Item>> holderOpt = itemLookup.get(key);
+                                holderOpt.ifPresent(holder -> ALLOWED_CACHE.add(holder.value()));
                         }
                 }
         }

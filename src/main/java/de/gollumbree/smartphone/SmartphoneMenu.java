@@ -47,7 +47,6 @@ public class SmartphoneMenu extends AbstractContainerMenu {
         ListTag inventoryData = SmartphoneItem.getInventory(phoneStack);
         this.lookup = playerInv.player.level().registryAccess();
         phoneInv.fromTag(inventoryData, lookup);
-        System.out.println("Loading smartphone inventory: " + inventoryData);
 
         for (int row = 0; row < rows; ++row) {
             for (int col = 0; col < cols; ++col) {
@@ -161,7 +160,6 @@ public class SmartphoneMenu extends AbstractContainerMenu {
         if (ItemStack.isSameItemSameComponents(held, this.smartphoneStack)) {
             ListTag newTag = phoneInv.createTag(this.lookup);
             SmartphoneItem.setInventory(held, newTag);
-            System.out.println("Saving smartphone inventory: " + newTag);
         }
     }
 

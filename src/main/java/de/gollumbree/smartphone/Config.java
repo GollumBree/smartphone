@@ -22,7 +22,6 @@ import net.neoforged.neoforge.event.server.ServerStartedEvent;
 // one to keep your config organized.
 // Demonstrates how to use Neo's config APIs
 public class Config {
-        private static final org.slf4j.Logger LOGGER = Smartphone.LOGGER;
         private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
         /** A list of item IDs or tag IDs (#namespace:path) allowed in the phone */

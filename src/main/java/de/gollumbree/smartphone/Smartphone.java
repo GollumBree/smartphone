@@ -1,9 +1,5 @@
 package de.gollumbree.smartphone;
 
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
@@ -20,8 +16,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class Smartphone {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "smartphone";
-    // Directly reference a slf4j logger
-    public static final Logger LOGGER = LogUtils.getLogger();
     // Create a Deferred Register to hold Items which will all be registered under
     // the "smartphone" namespace
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);

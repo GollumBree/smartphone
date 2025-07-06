@@ -195,7 +195,7 @@ public class SmartphoneMenu extends AbstractContainerMenu {
             player.setItemInHand(InteractionHand.MAIN_HAND, item); // set the item in hand
             item.use(player.level(), player, InteractionHand.MAIN_HAND); // use the item
             player.setItemInHand(InteractionHand.MAIN_HAND, phone); // restore held item
-            SmartphoneItem.setLastUsed(phone, item, player.level().registryAccess()); // set the last used item
+            SmartphoneItem.setLastUsed(phone, item, lookup); // set the last used item
             return;
         }
 

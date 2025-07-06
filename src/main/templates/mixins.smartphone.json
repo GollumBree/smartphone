@@ -5,7 +5,7 @@
     "compatibilityLevel": "JAVA_21",
     "mixins": [
         "PlayerSmartphoneMixin",
-        "EventHooksUseStartRedirectMixin"
+        "PlayerSmartphoneMixin2"
     ],
     "injectors": {
         "defaultRequire": 1

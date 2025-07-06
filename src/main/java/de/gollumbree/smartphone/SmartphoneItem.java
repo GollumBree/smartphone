@@ -1,10 +1,6 @@
 package de.gollumbree.smartphone;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -17,8 +13,7 @@ import net.minecraft.world.level.Level;
 
 public class SmartphoneItem extends Item {
     public static final String INVENTORY_KEY = "PhoneInventory";
-    public static final String LAST_USED_KEY = "LastUsed";
-    public static HolderLookup.Provider lookup; // for ItemStack parsing
+    public static ItemStack lastused = ItemStack.EMPTY; // Static variable to store the last used item
 
     public SmartphoneItem(Properties props) {
         super(props); // Register the data component
@@ -37,14 +32,5 @@ public class SmartphoneItem extends Item {
         }
         return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand),
                 level.isClientSide());
-    }
-
-    public static ItemStack getLastUsed(ItemStack phone) {
-        ItemStack iStack = null;
-        CompoundTag tag = phone.get(Smartphone.PHONE_LAST_USED.get());
-        if (tag != null) {
-            iStack = ItemStack.parseOptional(lookup, tag);
-        }
-        return iStack != null ? iStack : ItemStack.EMPTY;
     }
 }

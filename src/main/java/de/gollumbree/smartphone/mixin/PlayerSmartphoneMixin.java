@@ -44,6 +44,9 @@ public abstract class PlayerSmartphoneMixin// implements PlayerSmartphoneExt
         System.out
                 .println("PlayerSmartphoneMixin: set called on Item " + (ItemStack) (Object) this + " with component: "
                         + component + ", value: " + value);
+        ItemStack iStack = SmartphoneItem.lastused;
+        System.out.println("PlayerSmartphoneMixin: temp ItemStack is: " + iStack);
+        System.out.println((ItemStack) (Object) this == iStack);
     }
 
 }

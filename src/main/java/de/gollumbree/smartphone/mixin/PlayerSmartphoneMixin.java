@@ -31,7 +31,7 @@ public abstract class PlayerSmartphoneMixin implements PlayerSmartphoneExt {
     }
 
     @Inject(method = "getItemInHand", at = @At("RETURN"), cancellable = true)
-    private void swapSmartphoneReturn(InteractionHand hand,
+    private void onGetItemInHand(InteractionHand hand,
             CallbackInfoReturnable<ItemStack> cir) {
         if (ignoreSmartphoneFlag.get())
             return;

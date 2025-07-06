@@ -16,6 +16,7 @@
       ],
       "vmArgs": [
         "@/home/daniel/MinecraftMods/smartphone/build/moddev/clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dsmartphone%%/home/daniel/MinecraftMods/smartphone/bin/main"
       ],
       "cwd": "${workspaceFolder}/run",
       "env": {},

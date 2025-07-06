@@ -1,5 +1,7 @@
 package de.gollumbree.smartphone;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 
 import net.minecraft.core.HolderLookup;
@@ -43,18 +45,17 @@ public class SmartphoneMenu extends AbstractContainerMenu {
         // Slots / DataSlots hier einfügen …
         // Check if the data inventory size is some fixed value
         // Then, add slots for data inventory
-
         // allocate correct size (rows * 9)
         phoneInv = new SimpleContainer(rows * cols);
+        System.out.println("phoneStack has following Components: " + phoneStack.getComponents());
 
-        // load from component (if present)
-        ItemContainerContents inventoryData = phoneStack.get(DataComponents.CONTAINER);
-        if (inventoryData == null || inventoryData.getSlots() != phoneInv.getContainerSize()) {
-            // create empty inventory
-            inventoryData = ItemContainerContents.fromItems(phoneInv.getItems());
+        ItemContainerContents contents = phoneStack.get(DataComponents.CONTAINER);
+        if (contents != null) {
+            List<ItemStack> items = contents.stream().toList();
+            for (int i = 0; i < items.size() && i < phoneInv.getContainerSize(); i++) {
+                phoneInv.setItem(i, items.get(i).copy());
+            }
         }
-        inventoryData.stream()
-                .forEach(item -> phoneInv.setItem(phoneInv.getContainerSize(), item)); // add items to the phone
 
         for (int row = 0; row < rows; ++row) {
             for (int col = 0; col < cols; ++col) {
@@ -200,9 +201,10 @@ public class SmartphoneMenu extends AbstractContainerMenu {
             player.setItemInHand(InteractionHand.MAIN_HAND, item); // set the item in hand
             item.use(player.level(), player, InteractionHand.MAIN_HAND); // use the item
             player.setItemInHand(InteractionHand.MAIN_HAND, phone); // restore held item
+
+            SmartphoneItem.lookup = lookup;
             CompoundTag tag = new CompoundTag();
             tag.put(SmartphoneItem.LAST_USED_KEY, item.save(lookup));
-            SmartphoneItem.lookup = lookup;
             phone.set(Smartphone.PHONE_LAST_USED.get(), tag); // set the last used item
             return;
         }

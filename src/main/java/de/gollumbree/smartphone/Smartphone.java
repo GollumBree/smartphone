@@ -1,9 +1,12 @@
 package de.gollumbree.smartphone;
 
+import com.mojang.serialization.Codec;
+
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
@@ -31,8 +34,9 @@ public class Smartphone {
 
     // Example: a simple compound tag component like CUSTOM_DATA
     public static final DeferredHolder<DataComponentType<?>, DataComponentType<CompoundTag>> PHONE_LAST_USED = DATA_COMPONENTS
-            .register("phone_last-used", () -> DataComponentType.<CompoundTag>builder()
-                    .persistent(CompoundTag.CODEC).build());
+            .register("phone_last_used", () -> DataComponentType.<CompoundTag>builder()
+                    .persistent(CompoundTag.CODEC)
+                    .build());
 
     // The constructor for the mod class is the first code that is run when your mod
     // is loaded.

@@ -23,54 +23,27 @@ import net.minecraft.world.item.ItemStack;
 @Mixin(ItemStack.class)
 public abstract class PlayerSmartphoneMixin// implements PlayerSmartphoneExt
 {
-
-    // @Shadow
-    // public abstract ItemStack getItemInHand(InteractionHand hand);
-
-    // @Unique
-    // private static final ThreadLocal<Boolean> ignoreSmartphoneFlag =
-    // ThreadLocal.withInitial(() -> false);
-
-    // @Override
-    // public ItemStack getItemInHand(InteractionHand hand, boolean
-    // ignoreSmartphone) {
-    // ignoreSmartphoneFlag.set(ignoreSmartphone);
-    // ItemStack result = getItemInHand(hand); // original method with injected swap
-    // ignoreSmartphoneFlag.set(false);
-    // return result;
+    // @Inject(method = "set", at = @At("HEAD"), cancellable = true)
+    // private <T> void onSet(DataComponentType<? super T> component, @Nullable T
+    // value, CallbackInfoReturnable<T> cir) {
+    // if (((ItemStack) (Object) this).getItem() instanceof SmartphoneItem) {
+    // ItemStack last = SmartphoneItem.getLastUsed(((ItemStack) (Object) this)); //
+    // get the last // used item
+    // var output = last.set(component, value);
+    // cir.setReturnValue(output); // set and return the value
+    // // return output; // return the modified value
+    // }
     // }
 
-    // @Inject(method = "getItemInHand", at = @At("RETURN"), cancellable = true)
-    // private void onGetItemInHand(InteractionHand hand,
-    // CallbackInfoReturnable<ItemStack> cir) {
-    // // if (ignoreSmartphoneFlag.get())
-    // // return;
-
-    // ItemStack returned = cir.getReturnValue();
-    // System.err.println("PlayerSmartphoneMixin.onGetItemInHand: " + returned);
-    // if (returned.getItem() instanceof SmartphoneItem) {
-    // System.err
-    // .println("PlayerSmartphoneMixin.onGetItemInHand: Smartphone detected, looking
-    // for last used item.");
-    // var lookup = ((Player) (Object) this).level().registryAccess();
-    // ItemStack last = SmartphoneItem.getLastUsed(returned, lookup);
-    // System.err.println("PlayerSmartphoneMixin.onGetItemInHand: Last used item: "
-    // + last);
-    // if (!last.isEmpty())
-    // cir.setReturnValue(last);
-    // }
+    // {
+    // return this.components.set(component, value);
     // }
 
     @Inject(method = "set", at = @At("HEAD"), cancellable = true)
     private <T> void onSet(DataComponentType<? super T> component, @Nullable T value, CallbackInfoReturnable<T> cir) {
-        if (((ItemStack) (Object) this).getItem() instanceof SmartphoneItem) {
-            ItemStack last = SmartphoneItem.getLastUsed(((ItemStack) (Object) this)); // get the last // used item
-            var output = last.set(component, value);
-            cir.setReturnValue(output); // set and return the value
-            // return output; // return the modified value
-        }
+        System.out
+                .println("PlayerSmartphoneMixin: set called on Item " + (ItemStack) (Object) this + " with component: "
+                        + component + ", value: " + value);
     }
-    // {
-    // return this.components.set(component, value);
-    // }
+
 }

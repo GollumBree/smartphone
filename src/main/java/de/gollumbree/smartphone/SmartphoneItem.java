@@ -1,6 +1,7 @@
 package de.gollumbree.smartphone;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -39,13 +40,11 @@ public class SmartphoneItem extends Item {
     }
 
     public static ItemStack getLastUsed(ItemStack phone) {
-        CompoundTag cd = phone.get(Smartphone.PHONE_LAST_USED.get());
-        if (cd == null || lookup == null)
-            return ItemStack.EMPTY;
-
-        if (!cd.contains(LAST_USED_KEY, CompoundTag.TAG_COMPOUND))
-            return ItemStack.EMPTY;
-
-        return ItemStack.parse(lookup, cd.getCompound(LAST_USED_KEY)).orElse(ItemStack.EMPTY);
+        ItemStack iStack = null;
+        CompoundTag tag = phone.get(Smartphone.PHONE_LAST_USED.get());
+        if (tag != null) {
+            iStack = ItemStack.parseOptional(lookup, tag);
+        }
+        return iStack != null ? iStack : ItemStack.EMPTY;
     }
 }

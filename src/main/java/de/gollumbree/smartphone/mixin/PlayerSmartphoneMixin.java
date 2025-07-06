@@ -8,10 +8,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import de.gollumbree.smartphone.SmartphoneItem;
-import de.gollumbree.smartphone.SmartphoneMenu;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.world.item.ItemStack;
-import net.neoforged.neoforge.common.util.ItemStackMap;
 
 // import net.minecraft.world.InteractionHand;
 // import net.minecraft.world.entity.player.Player;
@@ -64,13 +62,13 @@ public abstract class PlayerSmartphoneMixin// implements PlayerSmartphoneExt
     // }
 
     @Inject(method = "set", at = @At("HEAD"), cancellable = true)
-    private <T> T onSet(DataComponentType<? super T> component, @Nullable T value, CallbackInfoReturnable<T> cir) {
-        if (this.getItem() instanceof SmartphoneItem) {
-            ItemStack last = ((SmartphoneItem) this).getLastUsed(this, SmartphoneMenu.lookup); // get the last used item
-            last.set(component, value);
-            return value;
+    private <T> void onSet(DataComponentType<? super T> component, @Nullable T value, CallbackInfoReturnable<T> cir) {
+        if (((ItemStack) (Object) this).getItem() instanceof SmartphoneItem) {
+            ItemStack last = SmartphoneItem.getLastUsed(((ItemStack) (Object) this)); // get the last // used item
+            var output = last.set(component, value);
+            cir.setReturnValue(output); // set and return the value
+            // return output; // return the modified value
         }
-        cir.cancel();
     }
     // {
     // return this.components.set(component, value);

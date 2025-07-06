@@ -1,5 +1,7 @@
 package de.gollumbree.smartphone;
 
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
@@ -8,6 +10,7 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -19,10 +22,17 @@ public class Smartphone {
     // Create a Deferred Register to hold Items which will all be registered under
     // the "smartphone" namespace
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
-
     // Creates a new item with the id "smartphone:smartphone"
     public static final DeferredItem<SmartphoneItem> SMARTPHONE_ITEM = ITEMS.register("smartphone",
             () -> new SmartphoneItem(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister
+            .createDataComponents(net.minecraft.core.registries.Registries.DATA_COMPONENT_TYPE, MODID);
+
+    // Example: a simple compound tag component like CUSTOM_DATA
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<CompoundTag>> PHONE_LAST_USED = DATA_COMPONENTS
+            .register("phone_last-used", () -> DataComponentType.<CompoundTag>builder()
+                    .persistent(CompoundTag.CODEC).build());
 
     // The constructor for the mod class is the first code that is run when your mod
     // is loaded.
@@ -34,6 +44,8 @@ public class Smartphone {
 
         // Register the Deferred Register to the mod event bus so items get registered
         ITEMS.register(modEventBus);
+
+        DATA_COMPONENTS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (Smartphone)

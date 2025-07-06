@@ -3,8 +3,9 @@ package de.gollumbree.smartphone;
 import javax.annotation.Nonnull;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
@@ -14,8 +15,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
-// import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 
 public class SmartphoneMenu extends AbstractContainerMenu {
     private static final int PIXEL_X = 18; // Breite eines Slots in Pixeln
@@ -27,7 +28,7 @@ public class SmartphoneMenu extends AbstractContainerMenu {
     private final SimpleContainer phoneInv;
 
     private final ItemStack smartphoneStack;
-    private final HolderLookup.Provider lookup; // RegistryAccess
+    private final HolderLookup.Provider lookup; // for ItemStack parsing
     // Client‑Konstruktor
 
     public SmartphoneMenu(int id, Inventory playerInv) {
@@ -38,6 +39,7 @@ public class SmartphoneMenu extends AbstractContainerMenu {
     public SmartphoneMenu(int id, Inventory playerInv, ItemStack phoneStack) {
         super(ModMenus.SMARTPHONE_MENU.get(), id);
         smartphoneStack = phoneStack;
+        lookup = playerInv.player.level().registryAccess(); // get the registry access from the level
         // Slots / DataSlots hier einfügen …
         // Check if the data inventory size is some fixed value
         // Then, add slots for data inventory
@@ -46,9 +48,13 @@ public class SmartphoneMenu extends AbstractContainerMenu {
         phoneInv = new SimpleContainer(rows * cols);
 
         // load from component (if present)
-        ListTag inventoryData = SmartphoneItem.getInventory(phoneStack);
-        this.lookup = playerInv.player.level().registryAccess();
-        phoneInv.fromTag(inventoryData, lookup);
+        ItemContainerContents inventoryData = phoneStack.get(DataComponents.CONTAINER);
+        if (inventoryData == null || inventoryData.getSlots() != phoneInv.getContainerSize()) {
+            // create empty inventory
+            inventoryData = ItemContainerContents.fromItems(phoneInv.getItems());
+        }
+        inventoryData.stream()
+                .forEach(item -> phoneInv.setItem(phoneInv.getContainerSize(), item)); // add items to the phone
 
         for (int row = 0; row < rows; ++row) {
             for (int col = 0; col < cols; ++col) {
@@ -172,8 +178,7 @@ public class SmartphoneMenu extends AbstractContainerMenu {
 
         // Only save if it's still the same item
         if (ItemStack.isSameItemSameComponents(held, this.smartphoneStack)) {
-            ListTag newTag = phoneInv.createTag(this.lookup);
-            SmartphoneItem.setInventory(held, newTag);
+            held.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(phoneInv.getItems()));
         }
     }
 
@@ -195,7 +200,10 @@ public class SmartphoneMenu extends AbstractContainerMenu {
             player.setItemInHand(InteractionHand.MAIN_HAND, item); // set the item in hand
             item.use(player.level(), player, InteractionHand.MAIN_HAND); // use the item
             player.setItemInHand(InteractionHand.MAIN_HAND, phone); // restore held item
-            SmartphoneItem.setLastUsed(phone, item, lookup); // set the last used item
+            CompoundTag tag = new CompoundTag();
+            tag.put(SmartphoneItem.LAST_USED_KEY, item.save(lookup));
+            SmartphoneItem.lookup = lookup;
+            phone.set(Smartphone.PHONE_LAST_USED.get(), tag); // set the last used item
             return;
         }
 

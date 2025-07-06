@@ -72,7 +72,7 @@ public class SmartphoneItem extends Item {
                 ? phone.get(DataComponents.CUSTOM_DATA).copyTag()
                 : new CompoundTag();
 
-        tag.put(LAST_USED_KEY, lastUsed.save(lookup));
+        tag.put(LAST_USED_KEY, lastUsed.saveOptional(lookup));
         phone.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
     }
 

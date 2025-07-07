@@ -1,9 +1,11 @@
-package de.gollumbree.smartphone;
+package de.gollumbree.smartphone.items;
 
 import java.util.List;
 
 import javax.annotation.Nonnull;
 
+import de.gollumbree.smartphone.Config;
+import de.gollumbree.smartphone.ModMenus;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;

@@ -1,5 +1,6 @@
 package de.gollumbree.smartphone;
 
+import de.gollumbree.smartphone.items.SmartphoneScreen;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -10,12 +11,12 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
-@Mod(value = Smartphone.MODID, dist = Dist.CLIENT)
+@Mod(value = Main.MODID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods
 // in the class annotated with @SubscribeEvent
-@EventBusSubscriber(modid = Smartphone.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-public class SmartphoneClient {
-    public SmartphoneClient(ModContainer container) {
+@EventBusSubscriber(modid = Main.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+public class Client {
+    public Client(ModContainer container) {
         // Allows NeoForge to create a config screen for this mod's configs.
         // The config screen is accessed by going to the Mods screen > clicking on your
         // mod > clicking on config.

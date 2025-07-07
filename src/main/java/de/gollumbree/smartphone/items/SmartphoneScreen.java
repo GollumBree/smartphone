@@ -1,7 +1,8 @@
-package de.gollumbree.smartphone;
+package de.gollumbree.smartphone.items;
 
 import javax.annotation.Nonnull;
 
+import de.gollumbree.smartphone.Main;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -10,7 +11,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class SmartphoneScreen extends AbstractContainerScreen<SmartphoneMenu> {
 
-    private static final ResourceLocation BG = ResourceLocation.fromNamespaceAndPath(Smartphone.MODID,
+    private static final ResourceLocation BG = ResourceLocation.fromNamespaceAndPath(Main.MODID,
             "textures/gui/container/smartphone_screen.png");
 
     public SmartphoneScreen(SmartphoneMenu menu, Inventory inv, Component title) {

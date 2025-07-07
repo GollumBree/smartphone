@@ -1,4 +1,4 @@
-package de.gollumbree.smartphone;
+package de.gollumbree.smartphone.items;
 
 import javax.annotation.Nonnull;
 import net.minecraft.network.chat.Component;

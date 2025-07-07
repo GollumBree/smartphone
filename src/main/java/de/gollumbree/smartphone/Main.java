@@ -1,12 +1,10 @@
 package de.gollumbree.smartphone;
 
-import com.mojang.serialization.Codec;
-
+import de.gollumbree.smartphone.items.SmartphoneItem;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
@@ -18,8 +16,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(Smartphone.MODID)
-public class Smartphone {
+@Mod(Main.MODID)
+public class Main {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "smartphone";
     // Create a Deferred Register to hold Items which will all be registered under
@@ -42,7 +40,7 @@ public class Smartphone {
     // is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and
     // pass them in automatically.
-    public Smartphone(IEventBus modEventBus, ModContainer modContainer) {
+    public Main(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         // modEventBus.addListener(this::commonSetup);
 

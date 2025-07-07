@@ -32,8 +32,11 @@ public class Config {
                         """)
                         .defineListAllowEmpty(
                                         "allowedItems", // path
-                                        List.of("cellphone:cellphone", "create_portable_packages:wireless_stock_ticker",
-                                                        "create_railways_navigator:navigator"), // default list
+                                        List.of(
+                                                        "cellphone:cellphone",
+                                                        "create_mobile_packages:portable_stock_ticker",
+                                                        "createrailwaysnavigator:navigator"), // default list
+
                                         () -> "modid:item", // what the GUI suggests for a new entry
                                         obj -> {
                                                 if (!(obj instanceof String s)) // type‑safety

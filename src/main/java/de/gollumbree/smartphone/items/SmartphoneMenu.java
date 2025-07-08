@@ -45,7 +45,6 @@ public class SmartphoneMenu extends AbstractContainerMenu {
         // Then, add slots for data inventory
         // allocate correct size (rows * 9)
         phoneInv = new SimpleContainer(rows * cols);
-        System.out.println("phoneStack has following Components: " + phoneStack.getComponents());
 
         ItemContainerContents contents = phoneStack.get(DataComponents.CONTAINER);
         if (contents != null) {

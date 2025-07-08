@@ -1,7 +1,6 @@
 {
     "required": true,
     "package": "de.gollumbree.smartphone.mixin",
-    "refmap": "mixins.smartphone.refmap.json",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
         "PlayerSmartphoneMixin",

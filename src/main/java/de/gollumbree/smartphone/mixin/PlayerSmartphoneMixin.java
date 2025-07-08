@@ -16,8 +16,8 @@ public abstract class PlayerSmartphoneMixin {
     private void onGetItemInHand(InteractionHand hand, CallbackInfoReturnable<ItemStack> cir) {
         ItemStack original = cir.getReturnValue();
         if (original.getItem() instanceof SmartphoneItem) {
-            if (SmartphoneItem.lastused != ItemStack.EMPTY) {
-                cir.setReturnValue(SmartphoneItem.lastused);
+            if (SmartphoneItem.using != ItemStack.EMPTY) {
+                cir.setReturnValue(SmartphoneItem.using);
             }
         }
     }
@@ -27,7 +27,7 @@ public abstract class PlayerSmartphoneMixin {
         onGetItemInHand(InteractionHand.MAIN_HAND, cir);
     }
 
-    @Inject(method = "getOffHandItem", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getOffhandItem", at = @At("RETURN"), cancellable = true)
     private void onGetItemInOffHand(CallbackInfoReturnable<ItemStack> cir) {
         onGetItemInHand(InteractionHand.OFF_HAND, cir);
     }

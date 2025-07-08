@@ -33,7 +33,7 @@ public class Config {
                         .defineListAllowEmpty(
                                         "allowedItems", // path
                                         List.of(
-                                                        "cellphone:cellphone",
+                                                        "pvcellphone:cellphone",
                                                         "create_mobile_packages:portable_stock_ticker",
                                                         "createrailwaysnavigator:navigator"), // default list
 

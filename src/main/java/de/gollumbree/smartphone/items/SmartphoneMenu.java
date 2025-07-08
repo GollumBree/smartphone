@@ -204,7 +204,9 @@ public class SmartphoneMenu extends AbstractContainerMenu {
             item.use(player.level(), player, InteractionHand.MAIN_HAND); // use the item
             // player.setItemInHand(InteractionHand.MAIN_HAND, phone); // restore held item
 
-            SmartphoneItem.lastused = item; // store the last used item in a static variable
+            SmartphoneItem.using = item; // store the last used item in a static variable
+            // SmartphoneItem.lastused = item; // store the last used item in a static
+            // variable
             return;
         }
 

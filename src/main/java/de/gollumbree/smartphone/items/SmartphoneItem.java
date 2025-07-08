@@ -13,7 +13,8 @@ import net.minecraft.world.level.Level;
 
 public class SmartphoneItem extends Item {
     public static final String INVENTORY_KEY = "PhoneInventory";
-    public static ItemStack lastused = ItemStack.EMPTY; // Static variable to store the last used item
+    public static ItemStack using = ItemStack.EMPTY; // Static variable to store the last used item
+    // public static ItemStack lastused = ItemStack.EMPTY;
 
     public SmartphoneItem(Properties props) {
         super(props); // Register the data component

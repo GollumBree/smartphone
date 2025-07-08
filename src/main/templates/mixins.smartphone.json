@@ -4,7 +4,8 @@
     "refmap": "mixins.smartphone.refmap.json",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
-        "PlayerSmartphoneMixin"
+        "PlayerSmartphoneMixin",
+        "PlayerSmartphoneMixinScreen"
     ],
     "injectors": {
         "defaultRequire": 1

@@ -3,8 +3,10 @@
     "package": "de.gollumbree.smartphone.mixin",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
-        "PlayerSmartphoneMixin",
-        "PlayerSmartphoneMixinScreen"
+        "PlayerSmartphoneMixin"
+    ],
+    "client": [
+        "PlayerSmartphoneMixinClient"
     ],
     "injectors": {
         "defaultRequire": 1

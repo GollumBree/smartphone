@@ -1,6 +1,8 @@
 package de.gollumbree.smartphone;
 
 import de.gollumbree.smartphone.items.SmartphoneItem;
+import de.gollumbree.smartphone.network.ServerPayloadHandler;
+import de.gollumbree.smartphone.network.UsingData;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.nbt.CompoundTag;
@@ -16,6 +18,8 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -61,6 +65,8 @@ public class Main {
         // this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        modEventBus.addListener(this::registerPayloads);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
 
@@ -93,5 +99,14 @@ public class Main {
         }
         RegistryAccess access = server.registryAccess();
         Config.refresh(access);
+    }
+
+    // on the mod event bus
+    private void registerPayloads(RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar("1");
+        registrar.playBidirectional(
+                UsingData.TYPE,
+                UsingData.STREAM_CODEC,
+                ServerPayloadHandler::handleDataOnMain);
     }
 }

@@ -7,9 +7,7 @@ import javax.annotation.Nonnull;
 import de.gollumbree.smartphone.Config;
 import de.gollumbree.smartphone.ModMenus;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -70,10 +68,7 @@ public class SmartphoneMenu extends AbstractContainerMenu {
 
                     @Override
                     public boolean mayPlace(@Nonnull ItemStack stack) {
-                        if (!(stack.is(TagKey.create(BuiltInRegistries.ITEM.key(),
-                                ResourceLocation.fromNamespaceAndPath("smartphone", "usable")))
-                                ||
-                                Config.isAllowed(stack.getItem()))) {
+                        if (!Config.isAllowed(stack.getItem())) {
                             return false; // only allow specific items
                         }
                         if (stack.getItem() instanceof SmartphoneItem) {
@@ -203,9 +198,11 @@ public class SmartphoneMenu extends AbstractContainerMenu {
             item.use(player.level(), player, InteractionHand.MAIN_HAND); // use the item
             // player.setItemInHand(InteractionHand.MAIN_HAND, phone); // restore held item
 
-            SmartphoneItem.using = item; // store the last used item in a static variable
-            // SmartphoneItem.lastused = item; // store the last used item in a static
-            // variable
+            if (player instanceof ServerPlayer) {
+                ServerUsing.using.put(player, item);
+            } else {
+                ClientUsing.using = item; // store the item for client use
+            }
             return;
         }
 

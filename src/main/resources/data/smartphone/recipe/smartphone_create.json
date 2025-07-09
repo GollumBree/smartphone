@@ -1,0 +1,39 @@
+{
+    "neoforge:conditions": [
+        {
+            "type": "neoforge:mod_loaded",
+            "modid": "create"
+        }
+    ],
+    "type": "create:mechanical_crafting",
+    "pattern": [
+        "GGEGG",
+        "CRORC",
+        "IIIII"
+    ],
+    "key": {
+        "G": {
+            "item": "minecraft:glass_pane"
+        },
+        "C": {
+            "item": "minecraft:copper_ingot"
+        },
+        "R": {
+            "item": "minecraft:redstone_block"
+        },
+        "O": {
+            "item": "minecraft:gold_ingot"
+        },
+        "I": {
+            "item": "create:iron_sheet"
+        },
+        "E": {
+            "item": "create:electron_tube"
+        }
+    },
+    "result": {
+        "id": "smartphone:smartphone",
+        "count": 1
+    },
+    "accept_mirrored": true
+}

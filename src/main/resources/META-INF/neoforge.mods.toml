@@ -50,8 +50,6 @@ description = '''Mod that adds a Smartphone item to combine different wireless i
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
 [[mixins]]
 config = "mixins.smartphone.json"
-debug.verbose = true
-debug.export = true
 
 # The [[accessTransformers]] block allows you to declare where your AT file is.
 # If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg

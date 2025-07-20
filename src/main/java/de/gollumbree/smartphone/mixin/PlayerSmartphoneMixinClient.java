@@ -17,7 +17,6 @@ public abstract class PlayerSmartphoneMixinClient {
     private void onScreenClosed(CallbackInfo ci) {
         ClientUsing.using = ItemStack.EMPTY; // Reset the last used smartphone when the screen is closed
         var data = new UsingData(ItemStack.EMPTY);
-        System.err.println("SmartphoneMixin: Data: " + data);
         PacketDistributor.sendToServer(data); // Notify the server to reset the smartphone
     }
 }

@@ -74,7 +74,7 @@ public class Config {
                 if (tagId == null)
                     continue;
                 TagKey<Item> tagKey = TagKey.create(Registries.ITEM, tagId);
-                itemLookup.getOrThrow(tagKey).forEach(holder -> ALLOWED_CACHE.add(holder.value()));
+                itemLookup.get(tagKey).ifPresent(tag -> tag.forEach(holder -> ALLOWED_CACHE.add(holder.value())));
             } else {
                 // Single item entry
                 ResourceLocation id = ResourceLocation.tryParse(entry);

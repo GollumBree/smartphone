@@ -1,7 +1,6 @@
 package de.gollumbree.smartphone.compat;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

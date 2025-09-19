@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public class SmartphoneItem extends Item {
     public static final String INVENTORY_KEY = "PhoneInventory";
@@ -19,9 +20,9 @@ public class SmartphoneItem extends Item {
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(@Nonnull Level level,
-            @Nonnull Player player,
-            @Nonnull InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@Nonnull Level level,
+                                                           @Nonnull Player player,
+                                                           @Nonnull InteractionHand hand) {
         if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
             serverPlayer.openMenu(
                     new SimpleMenuProvider(

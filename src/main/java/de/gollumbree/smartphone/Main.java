@@ -98,10 +98,7 @@ public class Main {
 
     @SubscribeEvent
     public void onDatapackSync(OnDatapackSyncEvent event) {
-        MinecraftServer server = event.getPlayer().getServer();
-        if (server == null) {
-            return; // not on a server
-        }
+        MinecraftServer server = event.getPlayerList().getServer();
         RegistryAccess access = server.registryAccess();
         Config.refresh(access);
     }
